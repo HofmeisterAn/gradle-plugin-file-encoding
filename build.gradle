@@ -1,0 +1,34 @@
+plugins { id "com.diffplug.gradle.spotless" version "3.9.0" }
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+repositories { jcenter() }
+
+dependencies {
+	compile gradleApi()
+	compile localGroovy()
+
+	testCompile gradleTestKit()
+	testCompile 'junit:junit:4+'
+}
+
+sourceSets {
+	main {
+		java { srcDirs = ['src/main/java']}
+		groovy { srcDirs = ['src/main/groovy']}
+	}
+
+	test {
+		java { srcDirs = ['src/test/java']}
+		groovy { srcDirs = ['src/test/groovy']}
+	}
+}
+
+spotless {
+	java { googleJavaFormat() }
+	groovy { greclipse() }
+	groovyGradle { greclipse() }
+}
