@@ -6,8 +6,11 @@ import org.gradle.api.tasks.TaskAction
 class FileEncodingTask extends DefaultTask {
 	static final String taskName = "convert"
 
-	FileEncoding fileEncoding
+	List<FileEncoding> fileEncodings = []
 
 	@TaskAction
-	def action() { }
+	def action() {
+		fileEncodings.each { fileEncoding ->
+		}
+	}
 }
