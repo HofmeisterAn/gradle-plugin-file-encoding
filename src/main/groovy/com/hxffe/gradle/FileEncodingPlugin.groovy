@@ -16,7 +16,7 @@ class FileEncodingPlugin implements Plugin<Project> {
 		target.extensions.add("fileEncodings", fileEncodings)
 
 		fileEncodings.all { fileEncoding ->
-			target.afterEvaluate { fileEncodingTask.fileEncoding = fileEncoding }
+			target.afterEvaluate { fileEncodingTask.fileEncodings.add(fileEncoding) }
 		}
 	}
 }

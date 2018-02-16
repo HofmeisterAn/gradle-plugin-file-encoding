@@ -3,7 +3,9 @@ plugins { id "com.diffplug.gradle.spotless" version "3.9.0" }
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'eclipse'
-apply plugin: 'idea'
+
+// Configuration that adds and holds the plugin dependencies into the jar
+configurations { pluginDependency }
 
 repositories { jcenter() }
 
@@ -13,17 +15,22 @@ dependencies {
 
 	testCompile gradleTestKit()
 	testCompile 'junit:junit:4+'
+
+	// Add plugin dependencies here e. g. pluginDependency 'junit:junit:4+'
+	configurations.compile.extendsFrom(configurations.pluginDependency)
 }
 
 sourceSets {
 	main {
 		java { srcDirs = ['src/main/java']}
 		groovy { srcDirs = ['src/main/groovy']}
+		resources { srcDirs = ['src/main/resources']}
 	}
 
 	test {
 		java { srcDirs = ['src/test/java']}
 		groovy { srcDirs = ['src/test/groovy']}
+		resources { srcDirs = ['src/test/resources']}
 	}
 }
 
@@ -31,4 +38,10 @@ spotless {
 	java { googleJavaFormat() }
 	groovy { greclipse() }
 	groovyGradle { greclipse() }
+}
+
+jar {
+	from {
+		configurations.pluginDependency.collect { it.isDirectory() ? it : zipTree(it) }
+	}
 }

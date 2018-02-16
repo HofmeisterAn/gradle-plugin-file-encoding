@@ -1,7 +1,7 @@
 buildscript {
 	repositories { jcenter() }
 
-	dependencies { classpath files('../../../build/libs/file-encoding-1.0.jar') }
+	dependencies { classpath files('../../../../../../build/libs/file-encoding-1.0.jar') }
 }
 
 apply plugin: 'com.hxffe.gradle.file-encoding'
@@ -10,6 +10,9 @@ fileEncodings {
 	src {
 		fromEncoding = 'ISO-8859-1'
 		toEncoding = 'UTF-8'
-		// files ['src/main/java'] Implement files property
+	}
+	foo {
+		fromEncoding = 'ISO-8859-1'
+		toEncoding = 'UTF-8'
 	}
 }

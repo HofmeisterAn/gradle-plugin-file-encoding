@@ -15,10 +15,8 @@ import static org.gradle.testkit.runner.TaskOutcome.*
 class FileEncodingPluginTest {
 	private final String pluginId = "com.hxffe.gradle.file-encoding"
 
-	private final String pluginTask = "convert"
-
 	private class BuildFile {
-		final private URI resource = getClass().getResource("/build.gradle").toURI()
+		final private URI resource = getClass().getResource("build.gradle").toURI()
 
 		File getBuildFile() {
 			return new File(resource)
@@ -48,9 +46,9 @@ class FileEncodingPluginTest {
 	void fileEncodingPluginTestsFileEncodingTaskConvert() {
 		BuildResult result = GradleRunner.create()
 				.withProjectDir(buildFile.rootPath)
-				.withArguments(this.pluginTask)
+				.withArguments(FileEncodingTask.taskName)
 				.build()
 
-		assertEquals(SUCCESS, result.task(":convert").getOutcome())
+		assertEquals(SUCCESS, result.task(":${FileEncodingTask.taskName}").getOutcome())
 	}
 }
