@@ -10,9 +10,11 @@ fileEncodings {
 	src {
 		fromEncoding = 'ISO-8859-1'
 		toEncoding = 'UTF-8'
+		target files('./', '../')
 	}
 	foo {
 		fromEncoding = 'ISO-8859-1'
 		toEncoding = 'UTF-8'
+		target files('./')
 	}
 }
