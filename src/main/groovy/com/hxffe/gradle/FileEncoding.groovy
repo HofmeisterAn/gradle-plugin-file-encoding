@@ -4,6 +4,8 @@ import com.hxffe.gradle.serializable.FileEncodingSerializable
 import org.gradle.api.Project
 import org.gradle.api.file.FileCollection
 
+import static java.util.Objects.requireNonNull
+
 class FileEncoding extends DefaultExtension<FileEncodingSerializable> {
 	final String name
 
@@ -19,9 +21,9 @@ class FileEncoding extends DefaultExtension<FileEncodingSerializable> {
 	}
 
 	void target(Object... targets) {
-		if (targets == null) {
-			this.target = this.project.files([])
-		}
+		targets = requireNonNull(targets)
+
+		// Set `FileCollection` for other types too
 
 		if (targets.length == 0) {
 			this.target = this.project.files([])
