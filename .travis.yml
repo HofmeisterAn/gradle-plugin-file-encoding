@@ -20,6 +20,14 @@ jobs:
     - stage: spotless
       script: ./gradlew spotlessCheck
     - stage: build
-      script: ./gradlew build
+      script: ./gradlew jar # TODO: Build jar only once
     - stage: test
-      script: ./gradlew build test # Add store artifact somewhere else
+      script: ./gradlew jar test
+    - stage: deploy
+      script:
+        - |
+          if [ "$TRAVIS_BRANCH" == "master" ]; then
+            ./gradlew jar bintrayUpload -DbintrayUser=$BINTRAY_USER -DbintrayApiKey=$BINTRAY_API_KEY
+          elif [ "$TRAVIS_BRANCH" == "develop" ]; then
+            ./gradlew jar bintrayUpload -DbintrayUser=$BINTRAY_USER -DbintrayApiKey=$BINTRAY_API_KEY -Pversion=snapshot
+          fi
