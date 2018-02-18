@@ -14,7 +14,11 @@ class FileEncodingThread implements Runnable {
 
 	@Override
 	void run() {
-		println(toString())
+		this.fileEncoding.target.each { file ->
+			EncodingStream input = EncodingStream.create(fileEncoding.fromEncoding, file)
+			EncodingStream output = EncodingStream.create(fileEncoding.toEncoding, file)
+			EncodingStream.process(input, output)
+		}
 	}
 
 	@Override
