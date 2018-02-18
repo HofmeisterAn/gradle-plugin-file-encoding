@@ -25,10 +25,14 @@ fileEncodings {
 	src {
 		fromEncoding = 'ISO-8859-1'
 		toEncoding = 'UTF-8'
-		files ['src/main/java']
+		target files('ISO-8859-1.txt')
 	}
 }
 ```
+
+### Supported Encodings
+- ISO-8859-1
+- UTF-8
 
 ## Authors
 
