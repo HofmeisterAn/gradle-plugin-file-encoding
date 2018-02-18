@@ -7,14 +7,14 @@ buildscript {
 apply plugin: 'com.hxffe.gradle.file-encoding'
 
 fileEncodings {
-	src {
-		fromEncoding = 'ISO-8859-1'
-		toEncoding = 'UTF-8'
-		target files('./', '../')
-	}
 	foo {
 		fromEncoding = 'ISO-8859-1'
 		toEncoding = 'UTF-8'
-		target files('./')
+		target files('ISO-8859-1.txt')
+	}
+	bar {
+		fromEncoding = 'UTF-8'
+		toEncoding = 'ISO-8859-1'
+		target files('UTF-8.txt')
 	}
 }
