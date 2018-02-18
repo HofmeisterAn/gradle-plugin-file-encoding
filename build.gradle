@@ -1,8 +1,12 @@
-plugins { id "com.diffplug.gradle.spotless" version "3.9.0" }
+plugins {
+	id "com.diffplug.gradle.spotless" version "3.10.0"
+	id "com.jfrog.bintray" version "1.7.3"
+}
 
-apply plugin: 'java'
-apply plugin: 'groovy'
 apply plugin: 'eclipse'
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'maven-publish'
 
 // Configuration that adds and holds the plugin dependencies into the jar
 configurations { pluginDependency }
@@ -43,5 +47,23 @@ spotless {
 jar {
 	from {
 		configurations.pluginDependency.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+}
+
+bintray {
+	publish = true
+	override = true
+	configurations = ['archives']
+	user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+	key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+	pkg {
+		repo = 'maven'
+		name = project.name
+		licenses = ['MIT']
+		vcsUrl = 'https://github.com/padme-amidala/gradle-plugin-file-encoding.git'
+		version {
+			name = project.version
+			released  = new Date()
+		}
 	}
 }
