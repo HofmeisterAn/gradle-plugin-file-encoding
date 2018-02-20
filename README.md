@@ -10,6 +10,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 None
 
+## Repository
+
+You'll find the dependency in `https://bintray.com/padme-amidala/maven`. The version `snapshot` correspond to the `develop` branch.
+
 ## Running
 
 To encode files add the plugin to your `build.gradle`, as well as a named object to `fileEncodings` and run the `convert` task. See the example below:
