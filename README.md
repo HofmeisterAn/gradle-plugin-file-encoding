@@ -20,17 +20,17 @@ To encode files add the plugin to your `build.gradle`, as well as a named object
 
 ```gradle
 buildscript {
-	dependencies { classpath files('libs/file-encoding-1.0.jar') }
+  dependencies { classpath files('libs/file-encoding-1.0.jar') }
 }
 
 apply plugin: 'com.hxffe.gradle.file-encoding'
 
 fileEncodings {
-	src {
-		fromEncoding = 'ISO-8859-1'
-		toEncoding = 'UTF-8'
-		target files('ISO-8859-1.txt')
-	}
+  src {
+    fromEncoding = 'ISO-8859-1'
+    toEncoding = 'UTF-8'
+    target files('ISO-8859-1.txt')
+  }
 }
 ```
 
@@ -40,7 +40,7 @@ fileEncodings {
 
 ## Authors
 
-* **Andre Hofmeister** - *Initial work* - [padme-amidala](https://github.com/padme-amidala/)
+* **Andre Hofmeister** - *Initial work* - [HofmeisterAn](https://github.com/HofmeisterAn/)
 
 ## License
 
